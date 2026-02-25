@@ -1,80 +1,68 @@
-body{
-font-family:Arial;
-background:#0f172a;
-color:white;
-text-align:center;
+/* Base */
+body {
+	font-family: Arial, sans-serif;
+	background: #0f172a;
+	color: white;
+	text-align: center;
 }
 
-table{
-margin:auto;
-border-collapse:collapse;
-width:90%;
-margin-bottom:30px;
+/* Layout */
+.matches {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 15px;
 }
 
-th,td{
-border:1px solid #334155;
-padding:12px;
+.match {
+	background: #1e293b;
+	padding: 15px;
+	border-radius: 10px;
+	width: 300px;
 }
 
-.matches{
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
-gap:15px;
+.team {
+	margin: 10px 0;
 }
 
-.match{
-background:#1e293b;
-padding:15px;
-border-radius:10px;
-width:300px;
+/* Table */
+table {
+	margin: auto;
+	border-collapse: collapse;
+	width: 90%;
+	margin-bottom: 30px;
 }
 
-.team{
-margin:10px 0;
+thead tr {
+	background: linear-gradient(90deg, #020617, #0f172a);
+	color: #e5e7eb;
+	font-weight: bold;
+	letter-spacing: 1px;
 }
 
-input{
-width:70px;
-padding:6px;
-margin:5px;
+th, td {
+	border: 1px solid #334155;
+	padding: 12px;
 }
 
-button{
-background:#22c55e;
-border:none;
-padding:8px 15px;
-color:white;
-border-radius:5px;
-cursor:pointer;
+/* Form */
+input {
+	width: 70px;
+	padding: 6px;
+	margin: 5px;
 }
 
-/* Team Colors */
-
-.IND{
-background:#1e40af; /* Blue */
+button {
+	background: #22c55e;
+	border: none;
+	padding: 8px 15px;
+	color: white;
+	border-radius: 5px;
+	cursor: pointer;
 }
 
-.SA{
-background:#14532d; /* Dark Green */
-}
-
-.WI{
-background:#7c2d12; /* Brown */
-}
-
-.ZIM{
-background:#b45309; /* Dark Orange */
-}
-
-thead tr{
-background:linear-gradient(
-90deg,
-#020617,
-#0f172a
-);
-color:#e5e7eb;
-font-weight:bold;
-letter-spacing:1px;
-}
+/* Team colors */
+.IND { background: #1e40af; } /* Blue */
+.SA  { background: #14532d; } /* Dark Green */
+.WI  { background: #7c2d12; } /* Brown */
+.ZIM { background: #b45309; } /* Dark Orange */
