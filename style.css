@@ -1,0 +1,80 @@
+body{
+font-family:Arial;
+background:#0f172a;
+color:white;
+text-align:center;
+}
+
+table{
+margin:auto;
+border-collapse:collapse;
+width:90%;
+margin-bottom:30px;
+}
+
+th,td{
+border:1px solid #334155;
+padding:12px;
+}
+
+.matches{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:15px;
+}
+
+.match{
+background:#1e293b;
+padding:15px;
+border-radius:10px;
+width:300px;
+}
+
+.team{
+margin:10px 0;
+}
+
+input{
+width:70px;
+padding:6px;
+margin:5px;
+}
+
+button{
+background:#22c55e;
+border:none;
+padding:8px 15px;
+color:white;
+border-radius:5px;
+cursor:pointer;
+}
+
+/* Team Colors */
+
+.IND{
+background:#1e40af; /* Blue */
+}
+
+.SA{
+background:#14532d; /* Dark Green */
+}
+
+.WI{
+background:#7c2d12; /* Brown */
+}
+
+.ZIM{
+background:#b45309; /* Dark Orange */
+}
+
+thead tr{
+background:linear-gradient(
+90deg,
+#020617,
+#0f172a
+);
+color:#e5e7eb;
+font-weight:bold;
+letter-spacing:1px;
+}
