@@ -66,27 +66,6 @@ function clearSyncState(){
 localStorage.removeItem(POINTS_SYNC_STATE_KEY);
 }
 
-function loadFixturesData(){
-return fetch(fixturesAPI)
-.then(r=>{
-if(!r.ok) throw new Error("Fixtures HTTP "+r.status);
-return r.json();
-});
-}
-
-function isExpectedFixtureVisible(fixtures,state){
-if(!state) return false;
-const i = Number(state.matchIndex);
-const m = fixtures[i];
-if(!m) return false;
-return (
-sameNumber(m["Runs A"],state.expectedRunA) &&
-sameNumber(m["Runs B"],state.expectedRunB) &&
-sameNumber(m["Overs A"],state.expectedOverA) &&
-sameNumber(m["Overs B"],state.expectedOverB)
-);
-}
-
 function postCell(cell,value){
 return fetch(updateAPI,{
 method:"POST",
@@ -133,7 +112,8 @@ return overs + (balls/6);
 // ---------- fixtures ----------
 function loadMatches(){
 
-loadFixturesData()
+fetch(fixturesAPI)
+.then(r=>r.json())
 .then(data=>{
 
 const div=document.getElementById("matches");
@@ -197,17 +177,9 @@ setPointsLoading(false);
 return;
 }
 
-let fixtureSynced = false;
-try{
-const fixtures = await loadFixturesData();
-fixtureSynced = isExpectedFixtureVisible(fixtures,state);
-} catch(e){
-fixtureSynced = false;
-}
-
 const currentSignature = await loadTable(true);
 
-if(fixtureSynced && currentSignature && currentSignature !== previousSignature){
+if(currentSignature && currentSignature !== previousSignature){
 clearSyncState();
 setPointsLoading(false);
 return;
@@ -315,8 +287,15 @@ loadMatches();
 const savedSyncState = getSyncState();
 if(savedSyncState && savedSyncState.pending){
 setPointsLoading(true);
-loadTable(true).then(()=>{
-waitForPointsUpdate(savedSyncState.baselineSignature || lastPointsSignature);
+loadTable(true).then((currentSig)=>{
+const baseline = savedSyncState.baselineSignature || currentSig;
+if(!savedSyncState.baselineSignature){
+saveSyncState({
+...savedSyncState,
+baselineSignature: baseline
+});
+}
+waitForPointsUpdate(baseline);
 });
 } else {
 loadTable(false);
